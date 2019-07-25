@@ -1,0 +1,24 @@
+package br.com.tcc.sys_monolithic.security.to;
+
+import java.io.Serializable;
+
+public class CredentialTO implements Serializable {
+	
+	private static final long serialVersionUID = 1139761455337577129L;
+	
+	private String username;
+	private String password;
+	
+	public String getUsername() {
+		return username;
+	}
+	public void setUsername(String username) {
+		this.username = username;
+	}
+	public String getPassword() {
+		return password;
+	}
+	public void setPassword(String password) {
+		this.password = password;
+	}
+}
