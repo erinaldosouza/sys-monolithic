@@ -10,9 +10,9 @@
 		<relativePath /> <!-- lookup parent from repository -->
 	</parent>
 	<groupId>br.com.tcc</groupId>
-	<artifactId>sys-monolitic</artifactId>
+	<artifactId>sys-monolithic</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
-	<name>user-persistence-microservices</name>
+	<name>sys-monolithic</name>
 	<description>Demo project for Spring Boot</description>
 
 	<properties>
