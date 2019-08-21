@@ -27,7 +27,9 @@ public class ClientServiceImpl implements ClientService {
 		try {
 
 			MultipartFile document = user.getDocument();
-			user.setDocumentInfo(document.getBytes());
+			if(document != null) {
+				user.setDocumentInfo(document.getBytes());				
+			}
 			this.repository.save(user);
 		
 		} catch (IOException e) {

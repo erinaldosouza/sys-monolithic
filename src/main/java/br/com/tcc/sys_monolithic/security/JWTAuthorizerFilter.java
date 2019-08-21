@@ -70,6 +70,7 @@ public class JWTAuthorizerFilter implements Filter {
 					if(optAuthority.isPresent()) {
 						chain.doFilter(request, response);
 					} else {
+						response.setStatus(HttpStatus.UNAUTHORIZED.value());
 						response.getWriter().append(
 								"{\"success\" : true,\"message\" : \"User unauthorized. \", \"request_status\": 403}");
 					}
@@ -81,11 +82,13 @@ public class JWTAuthorizerFilter implements Filter {
 			}
 			
 		} catch (ExpiredJwtException e) {
+			response.setStatus(HttpStatus.INTERNAL_SERVER_ERROR.value());
 			response.getWriter().append(
 					"{\"success\" : true,\"message\" : \"Couldn't authorize the user request. " + e.getMessage() + "\", \"request_status\": 403}");
 		
 		} catch (Exception e) {
 			e.printStackTrace();
+			response.setStatus(HttpStatus.UNAUTHORIZED.value());
 			response.getWriter().append(
 					"{\"success\" : false,\"message\" : \"Couldn't authorize the user request. " + e.getMessage() + "\", \"request_status\": 403}");
 		}
