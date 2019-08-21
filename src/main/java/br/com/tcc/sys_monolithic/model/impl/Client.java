@@ -18,7 +18,7 @@ import com.fasterxml.jackson.annotation.JsonInclude.Include;
 import br.com.tcc.sys_monolithic.model.IBaseModel;
 
 @Entity
-@Table(name="tb_client", schema="monolitic")
+@Table(name="tb_client", schema="monolithic")
 @JsonIgnoreProperties(ignoreUnknown = true)
 @JsonInclude(Include.NON_EMPTY)
 public class Client implements IBaseModel<Long> {
