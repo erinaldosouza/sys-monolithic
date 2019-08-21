@@ -20,7 +20,7 @@ import br.com.tcc.sys_monolithic.service.ClientService;
 import br.com.tcc.sys_monolithic.wrapper.ClientWrapper;
 
 @RestController
-@RequestMapping(value="api/user")
+@RequestMapping(value="api-user/v1")
 public class ClientController {
 
 	private final ClientService service;	
@@ -30,13 +30,13 @@ public class ClientController {
 		this.service = service;
 	}
 	
-	@PostMapping(value="v1")
-	public ResponseEntity<ClientWrapper> save(@RequestPart(name="document", required=false) MultipartFile document, @Valid Client user) {
+	@PostMapping
+	public ResponseEntity<ClientWrapper> save(@Valid Client user) {
 		 this.service.save(user);	 
 		 return ResponseEntity.status(HttpStatus.CREATED).build();				
 	}
 	
-	@GetMapping(value="v1/{id}")
+	@GetMapping(value="{id}")
 	public ResponseEntity<ClientWrapper> find(@PathVariable(name="id", required=true) Long id) {
 		ResponseEntity<ClientWrapper> response = null;
 		Client user = this.service.findById(id);
@@ -50,7 +50,7 @@ public class ClientController {
 		return response;
     }
 	
-	@GetMapping(value="v1")
+	@GetMapping
 	public ResponseEntity<ClientWrapper> findAll() {
 		ResponseEntity<ClientWrapper> response = null;
 		Iterable<Client> users = this.service.findAll();
@@ -64,7 +64,7 @@ public class ClientController {
 		return response;
 	}
 	
-	@PutMapping(value="v1/{id}")
+	@PutMapping(value="{id}")
 	public ResponseEntity<ClientWrapper> update(@PathVariable(name="id", required=true) Long id, @RequestPart(name="document", required=false) MultipartFile document, @Valid Client user) {
 		user.setId(id);
 		user.setDocument(document);
@@ -72,7 +72,7 @@ public class ClientController {
 		return ResponseEntity.ok().build();
 	} 
 	
-	@DeleteMapping(value="v1/{id}")
+	@DeleteMapping(value="{id}")
 	public ResponseEntity<ClientWrapper> delete(@PathVariable(name="id", required=true) Long id) {
 		this.service.deleteById(id);
 		return ResponseEntity.ok().build();
